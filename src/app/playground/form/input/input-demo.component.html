@@ -1,1 +1,84 @@
-<section class="p-6">InputDemoComponent works!</section>
+<div class="mx-auto max-w-4xl px-5 pb-10 pt-6">
+  <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-2">
+      <div class="text-[0.95rem] font-semibold text-stone-800">Normal</div>
+      <input
+        tngInput
+        type="text"
+        value="Nitrogen"
+        class="w-full rounded-xl border border-stone-300/70 bg-stone-50/80 px-3.5 py-3 text-stone-900 shadow-sm transition hover:border-stone-300 focus-visible:border-teal-700/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-700/20"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div class="grid w-full gap-4">
+        <label class="grid gap-2.5 rounded-2xl border border-slate-300 bg-slate-100 p-4 text-slate-800">
+          <span class="text-sm font-semibold leading-tight text-slate-700">Display name</span>
+          <div
+            tngInputGroup
+            class="flex min-h-11 items-center rounded-xl border border-slate-300 bg-white px-3.5 text-slate-900 transition data-[focused]:border-blue-500 data-[focused]:ring-4 data-[focused]:ring-blue-500/15"
+          >
+            <span tngPrefix aria-hidden="true" class="inline-flex items-center text-[0.95rem] font-semibold text-slate-500">@</span>
+            <input
+              tngInput
+              type="text"
+              value="Ada Lovelace"
+              aria-label="Display name"
+              class="w-full min-w-0 border-0 bg-transparent p-0 text-[0.98rem] font-medium text-slate-900 shadow-none outline-none placeholder:text-slate-400 focus-visible:outline-none"
+            />
+            <button
+              tngSuffix
+              type="button"
+              aria-label="Clear"
+              class="inline-flex size-6 items-center justify-center rounded-full bg-transparent p-0 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700 focus:outline-none"
+            >
+              X
+            </button>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div
+        tngInputGroup
+        class="flex min-h-13 w-full items-center rounded-2xl border border-slate-300 bg-slate-50 px-4 text-slate-900 transition data-[focused]:border-slate-400 data-[focused]:bg-white data-[focused]:ring-4 data-[focused]:ring-slate-400/20"
+      >
+        <span tngPrefix aria-hidden="true" class="mr-2.5 inline-flex items-center text-slate-400">
+          <svg viewBox="0 0 24 24" width="20" height="20" focusable="false" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line>
+          </svg>
+        </span>
+        <input
+          tngInput
+          type="text"
+          placeholder="Search components..."
+          aria-label="Search components"
+          class="w-full min-w-0 border-0 bg-transparent p-0 text-[1.08rem] font-medium leading-tight text-slate-700 shadow-none outline-none placeholder:text-slate-400 focus-visible:outline-none"
+        />
+        <kbd tngSuffix class="ml-3 inline-flex items-center bg-transparent p-0 text-[1.08rem] font-semibold leading-none tracking-[0.01em] text-slate-500" aria-hidden="true">
+          Ctrl+K
+        </kbd>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div
+        tngInputGroup
+        class="flex min-h-13 w-full items-center rounded-2xl border border-slate-400 bg-slate-50 px-4 text-slate-900 transition data-[focused]:border-slate-500 data-[focused]:bg-white data-[focused]:ring-4 data-[focused]:ring-slate-500/15"
+      >
+        <input
+          tngInput
+          type="text"
+          value="core-platform"
+          aria-label="Subdomain"
+          class="w-full min-w-0 border-0 bg-transparent p-0 text-[1.08rem] font-medium leading-tight text-slate-900 shadow-none outline-none focus-visible:outline-none"
+        />
+        <span tngSuffix class="ml-3 inline-flex items-center whitespace-nowrap text-[1.08rem] font-semibold leading-none tracking-[0.01em] text-slate-600" aria-hidden="true">
+          .tailng.dev
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

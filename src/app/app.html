@@ -1,1 +1,29 @@
+<header class="mx-auto max-w-6xl px-5 pb-0 pt-5 text-stone-900 md:px-6 md:pt-7">
+  <h1
+    class="bg-gradient-to-br from-stone-900 via-stone-800 to-teal-700 bg-clip-text font-serif text-[clamp(2rem,4.5vw,2.75rem)] font-semibold leading-tight tracking-[-0.02em] text-transparent"
+  >
+    Playground
+  </h1>
+  <span class="mt-4 block h-[3px] w-12 rounded-full bg-gradient-to-r from-teal-700 to-teal-600/90"></span>
+</header>
+
+<nav tngBreadcrumb aria-label="Breadcrumb" class="mx-auto max-w-6xl px-5 pb-4 pt-3 md:px-6">
+  <div class="mb-3 h-px w-full bg-stone-900/10"></div>
+  <ol tngBreadcrumbList class="m-0 flex list-none items-center gap-3 p-0">
+    <li tngBreadcrumbItem>
+      <a
+        tngBreadcrumbLink
+        [routerLink]="['/home']"
+        class="font-semibold text-teal-700 no-underline hover:text-teal-600"
+        >Home</a
+      >
+    </li>
+
+    @if (breadcrumbLabel(); as label) {
+      <li tngBreadcrumbSeparator class="font-bold text-stone-700/70">&gt;</li>
+      <li tngBreadcrumbItem class="font-semibold text-stone-900">{{ label }}</li>
+    }
+  </ol>
+</nav>
+
 <router-outlet />
