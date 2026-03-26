@@ -1,0 +1,38 @@
+<section class="mx-auto w-full max-w-[1280px] px-6 py-10 md:px-8">
+  <header class="mb-10 border-b border-slate-200 pb-5">
+    <h1 class="text-5xl font-semibold tracking-tight text-slate-900">Playground</h1>
+    <p class="mt-2 text-sm text-teal-700">Home</p>
+  </header>
+
+  @for (section of sections; track section.category) {
+    <section class="mb-14">
+      <h2 class="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+        {{ section.label }}
+      </h2>
+
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        @for (item of section.items; track item.path) {
+          <article
+            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+          >
+            <div class="space-y-3 px-5 pb-4 pt-5">
+              <h3 class="text-2xl font-semibold text-slate-900">{{ item.title }}</h3>
+              <p class="min-h-12 text-sm leading-6 text-slate-600">{{ item.description }}</p>
+              <code
+                class="inline-block rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs text-slate-500"
+                >/{{ item.path }}</code
+              >
+            </div>
+            <a
+              [routerLink]="['/', item.path]"
+              class="flex items-center justify-between border-t border-slate-200 px-5 py-4 text-sm font-semibold text-teal-700 hover:text-teal-800"
+            >
+              <span>Open demo</span>
+              <span aria-hidden="true">-></span>
+            </a>
+          </article>
+        }
+      </div>
+    </section>
+  }
+</section>
