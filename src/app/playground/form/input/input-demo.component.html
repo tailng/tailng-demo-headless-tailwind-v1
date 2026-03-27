@@ -5,8 +5,8 @@
       <input
         tngInput
         type="text"
-        value="Nitrogen"
-        class="w-full rounded-xl border border-stone-300/70 bg-stone-50/80 px-3.5 py-3 text-stone-900 shadow-sm transition hover:border-stone-300 focus-visible:border-teal-700/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-700/20"
+        value="Oxygen"
+        class="w-full max-w-[30rem] rounded-[0.85rem] border border-[rgba(28,25,23,0.14)] bg-white px-[0.8rem] py-[0.75rem] font-inherit text-[rgba(28,25,23,0.95)] shadow-[0_1px_2px_rgba(28,25,23,0.04)] outline-none focus-visible:border-[rgba(15,118,110,0.65)] focus-visible:shadow-[0_0_0_4px_rgba(15,118,110,0.18),0_1px_2px_rgba(28,25,23,0.04)]"
       />
     </div>
 
@@ -78,6 +78,32 @@
         <span tngSuffix class="ml-3 inline-flex items-center whitespace-nowrap text-[1.08rem] font-semibold leading-none tracking-[0.01em] text-slate-600" aria-hidden="true">
           .tailng.dev
         </span>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <div
+        tngInputGroup
+        class="min-h-11 w-full max-w-[32rem] items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 shadow-sm transition [&[data-focused]]:border-blue-500 [&[data-focused]]:ring-2 [&[data-focused]]:ring-blue-200"
+      >
+        <span tngPrefix aria-hidden="true" class="text-slate-500">
+          <tng-icon icon="search" class="h-4 w-4" />
+        </span>
+        <input
+          tngInput
+          type="search"
+          placeholder="Search docs..."
+          aria-label="Search docs"
+          class="min-w-0 flex-1 border-0 bg-transparent p-0 text-[0.98rem] outline-none"
+        />
+        <button
+          tngSuffix
+          type="button"
+          aria-label="Clear search"
+          class="inline-flex items-center rounded-full border-0 bg-transparent p-0 text-slate-500 transition hover:text-slate-700"
+        >
+          <tng-icon icon="x" class="h-4 w-4" />
+        </button>
       </div>
     </div>
   </div>
