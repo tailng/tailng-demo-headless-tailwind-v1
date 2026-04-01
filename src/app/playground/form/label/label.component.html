@@ -1,1 +1,64 @@
-<section class="p-6">LabelComponent works!</section>
+<section class="grid w-full max-w-[34rem] gap-4 rounded-2xl border border-slate-300 bg-white p-4 text-slate-900 shadow-sm [color-scheme:light]">
+  <div class="grid gap-2">
+    <label
+      tngLabel
+      [required]="true"
+      for="headless-label-tailwind-workspace"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 [&[data-required]]:after:text-rose-600 [&[data-required]]:after:content-['*']"
+    >
+      Workspace name
+    </label>
+    <input
+      id="headless-label-tailwind-workspace"
+      type="text"
+      placeholder="North Star"
+      aria-required="true"
+      class="min-h-11 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+    />
+  </div>
+  <label tngLabel class="inline-flex items-center gap-3 text-sm font-medium text-slate-700">
+    <input type="checkbox" class="h-4 w-4 accent-blue-600" />
+    <span>Send the release announcement to Slack</span>
+  </label>
+</section>
+<br/>
+<section class="grid w-full max-w-[34rem] gap-4 rounded-2xl border border-slate-300 bg-white p-4 text-slate-900 shadow-sm [color-scheme:light]">
+  <div class="grid gap-2">
+    <label
+      tngLabel
+      [required]="true"
+      for="headless-label-tailwind-owner"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-900 [&[data-required]]:after:text-rose-600 [&[data-required]]:after:content-['*']"
+    >
+      Release owner
+    </label>
+    <input
+      id="headless-label-tailwind-owner"
+      type="text"
+      class="min-h-11 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+    />
+  </div>
+  <div class="grid gap-2">
+    <label
+      tngLabel
+      [disabled]="true"
+      for="headless-label-tailwind-archive"
+      class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500"
+    >
+      Archived environment
+    </label>
+    <input
+      id="headless-label-tailwind-archive"
+      type="text"
+      disabled
+      class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500"
+    />
+  </div>
+</section>
+<br/>
+<section class="grid w-full max-w-[34rem] gap-4 rounded-2xl border border-slate-300 bg-white p-4 text-slate-900 shadow-sm [color-scheme:light]">
+  <label tngLabel class="inline-flex w-full max-w-[28rem] items-center gap-3 rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-800 shadow-sm [color-scheme:light]">
+    <input type="checkbox" class="h-4 w-4 accent-blue-600" />
+    <span>Send the release announcement to Slack</span>
+  </label>
+</section>
