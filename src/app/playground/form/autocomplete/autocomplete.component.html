@@ -1,1 +1,169 @@
-<section class="p-6">AutocompleteComponent works!</section>
+<section class="mx-auto grid max-w-[32rem] gap-3">
+  <span class="text-xs font-semibold text-slate-500">Country directory</span>
+
+  <section
+    tngAutocomplete
+    class="grid gap-2"
+    [open]="open()"
+    (openChange)="open.set($event)"
+    [value]="selectedCountry()"
+    (valueChange)="selectedCountry.set($event)"
+    [query]="query()"
+    (queryChange)="query.set($event)"
+  >
+    <div
+      tngAutocompleteTriggerContainer
+      class="flex min-h-12 items-center gap-3 rounded-2xl border border-slate-200 bg-white shadow-sm transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/10"
+    >
+      <input
+        tngAutocompleteTrigger
+        type="text"
+        class="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+        [value]="displayText()"
+        (input)="onInput($event)"
+        aria-label="Country directory"
+        placeholder="Type Ind to filter"
+      />
+      <span tngAutocompleteIcon aria-hidden="true" class="mr-4 text-slate-400">▾</span>
+    </div>
+
+    <div tngAutocompleteContent class="contents">
+      <div
+        tngAutocompleteOverlay
+        class="rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10"
+      >
+        <ul tngAutocompleteListbox [value]="selectedCountry()" class="grid gap-1">
+          @for (country of filteredCountries(); track country.code) {
+            <li
+              tngAutocompleteOption
+              class="rounded-xl border border-transparent px-3 py-2 text-sm text-slate-700 transition data-[active]:border-slate-200 data-[active]:bg-slate-50 data-[selected]:border-blue-200 data-[selected]:bg-blue-50 data-[selected]:font-semibold data-[selected]:text-blue-700"
+              [tngValue]="country.code"
+            >
+              {{ country.label }}
+            </li>
+          }
+          @if (filteredCountries().length === 0) {
+            <li data-slot="autocomplete-empty" class="px-3 py-2 text-sm text-slate-500">No matches</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ selectedLabel() }}</p>
+</section>
+
+<br/>
+<section class="mx-auto grid max-w-[34rem] gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-slate-500">Release owner</span>
+    <p class="m-0 text-sm text-slate-600">Assign a shipping owner before the release branch opens.</p>
+  </div>
+
+  <section
+    tngAutocomplete
+    class="grid gap-2"
+    [open]="releaseOwnerAutocompleteOpen()"
+    (openChange)="releaseOwnerAutocompleteOpen.set($event)"
+    [value]="releaseOwnerAutocompleteValue()"
+    (valueChange)="releaseOwnerAutocompleteValue.set($event)"
+    [query]="releaseOwnerAutocompleteQuery()"
+    (queryChange)="releaseOwnerAutocompleteQuery.set($event)"
+  >
+    <div
+      tngAutocompleteTriggerContainer
+      class="flex min-h-12 items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 transition focus-within:border-blue-500 focus-within:bg-white focus-within:ring-4 focus-within:ring-blue-500/10"
+    >
+      <input
+        tngAutocompleteTrigger
+        type="text"
+        class="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+        [value]="releaseOwnerAutocompleteDisplayText()"
+        (input)="onReleaseOwnerAutocompleteInput($event)"
+        aria-label="Release owner"
+        placeholder="Search people"
+      />
+      <span tngAutocompleteIcon aria-hidden="true" class="mr-4 text-slate-400">⌄</span>
+    </div>
+
+    <div tngAutocompleteContent class="contents">
+      <div tngAutocompleteOverlay class="rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10">
+        <ul tngAutocompleteListbox [value]="releaseOwnerAutocompleteValue()" class="grid gap-1">
+          @for (person of releaseOwnerAutocompleteFilteredOptions(); track person.id) {
+            <li
+              tngAutocompleteOption
+              class="rounded-xl border border-transparent px-3 py-2 text-sm text-slate-700 transition data-[active]:border-slate-200 data-[active]:bg-slate-50 data-[selected]:border-emerald-200 data-[selected]:bg-emerald-50 data-[selected]:font-semibold data-[selected]:text-emerald-700"
+              [tngValue]="person.id"
+            >
+              {{ person.label }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</section>
+<br/>
+
+<section class="mx-auto grid max-w-[34rem] gap-4 rounded-3xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold text-slate-500">Repository search</span>
+    <p class="m-0 text-sm text-slate-600">
+      Type to filter, or press Enter to create a new repository tag when there is no active match.
+    </p>
+  </div>
+
+  <section
+    tngAutocomplete
+    class="grid gap-2"
+    [open]="repositoryCreateTailwindOpen()"
+    (openChange)="repositoryCreateTailwindOpen.set($event)"
+    [value]="repositoryCreateTailwindValue()"
+    (valueChange)="repositoryCreateTailwindValue.set($event)"
+    [query]="repositoryCreateTailwindQuery()"
+    (queryChange)="repositoryCreateTailwindQuery.set($event)"
+    [allowCreate]="true"
+    [strict]="false"
+    (create)="onRepositoryCreateTailwind($event.query)"
+  >
+    <div
+      tngAutocompleteTriggerContainer
+      class="flex min-h-12 items-center gap-3 rounded-2xl border border-slate-200 bg-white shadow-sm transition focus-within:border-cyan-500 focus-within:ring-4 focus-within:ring-cyan-500/10"
+    >
+      <input
+        tngAutocompleteTrigger
+        type="text"
+        class="min-w-0 flex-1 bg-transparent px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+        [value]="repositoryCreateTailwindDisplayText()"
+        (input)="onRepositoryCreateTailwindInput($event)"
+        aria-label="Repository search"
+        placeholder="Search or create repository"
+      />
+      <span tngAutocompleteIcon aria-hidden="true" class="mr-4 text-slate-400">＋</span>
+    </div>
+
+    <div tngAutocompleteContent class="contents">
+      <div
+        tngAutocompleteOverlay
+        class="rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/10"
+      >
+        <ul tngAutocompleteListbox [value]="repositoryCreateTailwindValue()" class="grid gap-1">
+          @for (repository of repositoryCreateTailwindFilteredOptions(); track repository.id) {
+            <li
+              tngAutocompleteOption
+              class="rounded-xl border border-transparent px-3 py-2 text-sm text-slate-700 transition data-[active]:border-slate-200 data-[active]:bg-slate-50 data-[selected]:border-cyan-200 data-[selected]:bg-cyan-50 data-[selected]:font-semibold data-[selected]:text-cyan-700"
+              [tngValue]="repository.id"
+            >
+              {{ repository.label }}
+            </li>
+          }
+          @if (repositoryCreateTailwindFilteredOptions().length === 0) {
+            <li data-slot="autocomplete-empty" class="px-3 py-2 text-sm text-slate-500">Press Enter to create “{{ repositoryCreateTailwindQuery() }}”.</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ repositoryCreateTailwindSelectedLabel() }}</p>
+</section>
