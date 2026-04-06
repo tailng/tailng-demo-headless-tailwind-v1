@@ -1,1 +1,173 @@
-<section class="p-6">MultiAutocompleteComponent works!</section>
+<section class="mx-auto grid max-w-[36rem] gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Launch markets</span>
+    <p class="m-0 text-sm text-slate-600">
+      Primitive-first composition with a light shell and explicit chip treatment.
+    </p>
+  </div>
+
+  <section
+    tngMultiAutocomplete
+    class="relative flex min-h-[3.25rem] min-w-0 flex-wrap items-center content-start gap-2 rounded-[1.35rem] border border-slate-300 bg-slate-50 p-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/15"
+    [open]="headlessOverviewTailwindLaunchMarketsOpen()"
+    (openChange)="headlessOverviewTailwindLaunchMarketsOpen.set($event)"
+    [query]="headlessOverviewTailwindLaunchMarketsQuery()"
+    (queryChange)="headlessOverviewTailwindLaunchMarketsQuery.set($event)"
+    [value]="headlessOverviewTailwindSelectedMarketCodes()"
+    (valueChange)="onHeadlessOverviewTailwindLaunchMarketsValueChange($event)"
+  >
+    @for (code of headlessOverviewTailwindSelectedMarketCodes(); track code) {
+      <span
+        tngMultiAutocompleteChip
+        class="inline-flex shrink-0 items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-sm font-semibold leading-5 text-blue-700 shadow-sm"
+        [tngValue]="code"
+      >
+        {{ resolveHeadlessOverviewTailwindLaunchMarketLabel(code) }}
+      </span>
+    }
+
+    <input
+      tngMultiAutocompleteTrigger
+      type="text"
+      class="basis-40 min-w-[9rem] flex-1 bg-transparent px-2 py-2 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400"
+      [value]="headlessOverviewTailwindLaunchMarketsQuery()"
+      (input)="onHeadlessOverviewTailwindLaunchMarketsInput($event)"
+      placeholder="Type Ind to filter"
+      aria-label="Launch markets"
+    />
+
+    <div tngMultiAutocompleteContent class="absolute inset-x-0 top-[calc(100%+0.5rem)] z-20">
+      <div
+        tngMultiAutocompleteOverlay
+        class="w-auto max-w-[calc(100vw-2rem)] overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white p-2 shadow-[0_24px_40px_-24px_rgba(15,23,42,0.24)]"
+      >
+        <ul tngMultiAutocompleteListbox class="m-0 grid max-h-64 list-none gap-1 overflow-auto p-0">
+          @for (market of headlessOverviewTailwindFilteredLaunchMarkets(); track market.code) {
+            <li
+              tngMultiAutocompleteOption
+              class="grid w-full gap-1 rounded-xl border border-transparent px-4 py-3 text-sm text-slate-900 transition hover:bg-slate-50 data-[active]:border-slate-200 data-[active]:bg-slate-50 data-[selected]:border-blue-300 data-[selected]:bg-blue-50 data-[selected]:font-medium data-[selected]:text-blue-700 data-[selected]:shadow-[inset_0_1px_0_rgba(255,255,255,0.62)] [&[data-selected][data-active]]:border-blue-500 [&[data-selected][data-active]]:bg-blue-100 [&[data-selected][data-active]]:text-blue-800 [&[data-selected][data-active]]:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_0_0_2px_rgba(37,99,235,0.16)]"
+              [tngValue]="market.code"
+            >
+              <span class="font-medium">{{ market.label }}</span>
+              <small class="text-xs text-slate-500">{{ market.region }}</small>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ headlessOverviewTailwindSelectedMarketSummary() }}</p>
+</section>
+<br/>
+
+<section class="mx-auto grid max-w-[36rem] gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Release owners</span>
+    <p class="m-0 text-sm text-slate-600">
+      Use a light wrapper card and let the primitive state attributes drive the option styling.
+    </p>
+  </div>
+
+  <section
+    tngMultiAutocomplete
+    class="relative flex min-h-12 flex-wrap gap-2 rounded-2xl border border-slate-300 bg-white p-2 shadow-sm shadow-slate-900/5 transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/15"
+    [open]="headlessStylingPlainReleaseOwnersOpen()"
+    (openChange)="headlessStylingPlainReleaseOwnersOpen.set($event)"
+    [query]="headlessStylingPlainReleaseOwnerQuery()"
+    (queryChange)="headlessStylingPlainReleaseOwnerQuery.set($event)"
+    [value]="headlessStylingPlainSelectedOwnerIds()"
+    (valueChange)="onHeadlessStylingPlainReleaseOwnerValueChange($event)"
+  >
+    @for (id of headlessStylingPlainSelectedOwnerIds(); track id) {
+      <span
+        tngMultiAutocompleteChip
+        class="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700"
+        [tngValue]="id"
+      >
+        {{ id }}
+      </span>
+    }
+
+    <input
+      tngMultiAutocompleteTrigger
+      type="text"
+      class="min-w-[9rem] flex-1 bg-transparent px-2 py-1.5 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+      [value]="headlessStylingPlainReleaseOwnerQuery()"
+      (input)="onHeadlessStylingPlainReleaseOwnerInput($event)"
+      placeholder="Search release owners"
+      aria-label="Release owners"
+    />
+
+    <div tngMultiAutocompleteContent class="contents">
+      <div
+        tngMultiAutocompleteOverlay
+        class="max-w-[min(100vw-2rem,36rem)] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10"
+      >
+        <ul tngMultiAutocompleteListbox>
+          @for (owner of headlessStylingPlainFilteredReleaseOwners(); track owner.id) {
+            <li
+              tngMultiAutocompleteOption
+              class="group grid gap-1 rounded-xl border border-transparent px-4 py-3 text-sm text-slate-900 transition data-[active]:border-slate-300 data-[active]:bg-slate-50 data-[active]:shadow-[0_0_0_1px_rgba(148,163,184,0.08)] data-[selected]:border-blue-200 data-[selected]:bg-blue-50 data-[selected]:text-blue-700 data-[selected]:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_1px_2px_rgba(37,99,235,0.08)] data-[disabled]:cursor-not-allowed data-[disabled]:border-slate-200 data-[disabled]:bg-slate-50 data-[disabled]:text-slate-400 data-[disabled]:shadow-none [&[data-selected][data-active]]:border-blue-400 [&[data-selected][data-active]]:bg-blue-100 [&[data-selected][data-active]]:text-blue-800 [&[data-selected][data-active]]:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_0_0_2px_rgba(37,99,235,0.12)]"
+              [tngValue]="owner.id"
+              [disabled]="isHeadlessStylingPlainReleaseOwnerDisabled(owner)"
+            >
+              <span class="font-medium">{{ owner.name }}</span>
+              <small class="text-xs text-slate-500 group-data-[disabled]:text-slate-400">{{ owner.team }}</small>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+</section>
+<br/>
+
+<section class="mx-auto grid max-w-[36rem] gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Launch markets</span>
+    <p class="m-0 text-sm text-slate-600">Pick multiple launch regions while keeping chips visible in the owned shell.</p>
+  </div>
+
+  <section
+    tngMultiAutocomplete
+    class="relative flex min-h-12 flex-wrap items-center gap-2 rounded-[1.15rem] border border-slate-300 bg-gradient-to-b from-white to-slate-50 p-2 transition focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-500/15"
+    [open]="headlessExamplesTailwindLaunchMarketsOpen()"
+    (openChange)="headlessExamplesTailwindLaunchMarketsOpen.set($event)"
+    [query]="headlessExamplesTailwindLaunchMarketsQuery()"
+    (queryChange)="headlessExamplesTailwindLaunchMarketsQuery.set($event)"
+    [value]="headlessExamplesTailwindSelectedMarketCodes()"
+    (valueChange)="onHeadlessExamplesTailwindLaunchMarketsValueChange($event)"
+  >
+    @for (code of headlessExamplesTailwindSelectedMarketCodes(); track code) {
+      <span tngMultiAutocompleteChip class="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-700 shadow-sm shadow-blue-900/5" [tngValue]="code">
+        {{ resolveHeadlessExamplesTailwindLaunchMarketLabel(code) }}
+      </span>
+    }
+
+    <input
+      tngMultiAutocompleteTrigger
+      type="text"
+      class="min-w-[9rem] flex-1 bg-transparent px-2 py-1.5 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+      [value]="headlessExamplesTailwindLaunchMarketsQuery()"
+      (input)="onHeadlessExamplesTailwindLaunchMarketsInput($event)"
+      placeholder="Search launch markets"
+      aria-label="Launch markets"
+    />
+
+    <div tngMultiAutocompleteContent class="contents">
+      <div tngMultiAutocompleteOverlay class="max-w-[min(100vw-2rem,36rem)] overflow-hidden rounded-[1.15rem] border border-slate-200 bg-white p-2 shadow-xl shadow-slate-900/10">
+        <ul tngMultiAutocompleteListbox [value]="headlessExamplesTailwindSelectedMarketCodes()" class="m-0 grid max-h-72 list-none gap-2 overflow-auto p-0">
+          @for (market of headlessExamplesTailwindFilteredLaunchMarkets(); track market.code) {
+            <li tngMultiAutocompleteOption class="group grid cursor-pointer gap-1 rounded-xl border border-transparent bg-white px-4 py-3 text-sm text-slate-900 transition data-[active]:border-slate-300 data-[active]:bg-slate-50 data-[active]:shadow-[0_0_0_1px_rgba(148,163,184,0.08)] data-[selected]:border-blue-200 data-[selected]:bg-blue-50 data-[selected]:text-blue-700 data-[selected]:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_1px_2px_rgba(37,99,235,0.08)] [&[data-selected][data-active]]:border-blue-400 [&[data-selected][data-active]]:bg-blue-100 [&[data-selected][data-active]]:text-blue-800 [&[data-selected][data-active]]:shadow-[inset_0_1px_0_rgba(255,255,255,0.72),0_0_0_2px_rgba(37,99,235,0.12)]" [tngValue]="market.code">
+              <span class="font-medium">{{ market.label }}</span>
+              <small class="text-xs text-slate-500 group-data-[active]:text-slate-600 group-data-[selected]:text-blue-600">{{ market.region }}</small>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ headlessExamplesTailwindSelectedMarketSummary() }}</p>
+</section>
