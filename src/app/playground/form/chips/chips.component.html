@@ -1,1 +1,54 @@
-<section class="p-6">ChipsComponent works!</section>
+<section class="mx-auto grid max-w-[36rem] gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Selected surfaces</span>
+    <p class="m-0 text-sm text-slate-600">
+      Primitive-first removable chips with utility-first styling on top of the same projected chip parts.
+    </p>
+  </div>
+
+  <section
+    tngChips
+    class="block w-full min-w-0"
+    [tngChipsValues]="headlessChipsOverviewTailwindSelectedSurfaces()"
+    (valuesChange)="onHeadlessChipsOverviewTailwindValuesChange($event)"
+    [tngChipsAriaLabel]="'Selected surfaces'"
+  >
+    <div class="flex flex-wrap gap-2">
+      @for (surface of headlessChipsOverviewTailwindSelectedSurfaces(); track surface) {
+        <span tngChip [tngChipValue]="surface" [tngChipLabel]="surface" class="inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-3 py-2 text-sm font-medium text-sky-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)]">
+          <span>{{ surface }}</span>
+          <button tngChipRemove type="button" class="inline-grid h-5 w-5 place-items-center rounded-full bg-sky-100 text-[0.8rem] leading-none text-sky-800 transition hover:bg-sky-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400">&times;</button>
+        </span>
+      }
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ headlessChipsOverviewTailwindSummary() }}</p>
+</section>
+<br />
+<section class="mx-auto grid max-w-[36rem] gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 text-slate-900 shadow-sm">
+  <div class="grid gap-1">
+    <span class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">Release lanes</span>
+    <p class="m-0 text-sm text-slate-600">
+      Disabled chips stay visible, but only active lanes remain removable.
+    </p>
+  </div>
+
+  <section tngChips
+    class="block w-full min-w-0 [--tng-semantic-background-base:#ffffff] [--tng-semantic-border-subtle:#d8e2ef] [--tng-semantic-foreground-primary:#0f172a]"
+    [tngChipsValues]="headlessChipsExamplesTailwindReleaseLanes()"
+    (valuesChange)="onHeadlessChipsExamplesTailwindReleaseLanesChange($event)"
+    [tngChipsAriaLabel]="'Release lanes'"
+  >
+    <div class="flex flex-wrap gap-2">
+      @for (lane of headlessChipsExamplesTailwindReleaseLanes(); track lane) {
+        <span tngChip [tngChipValue]="lane" [tngChipLabel]="lane" [tngChipDisabled]="isHeadlessChipsExamplesTailwindReleaseLaneLocked(lane)" class="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-2 text-sm font-medium text-amber-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] data-[disabled]:border-slate-200 data-[disabled]:bg-slate-50 data-[disabled]:text-slate-400">
+          <span>{{ lane }}</span>
+          <button tngChipRemove type="button" class="inline-grid h-5 w-5 place-items-center rounded-full bg-amber-100 text-[0.8rem] leading-none text-amber-800 transition hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400">&times;</button>
+        </span>
+      }
+    </div>
+  </section>
+
+  <p class="m-0 text-xs text-slate-600">Selected: {{ headlessChipsExamplesTailwindReleaseLaneSummary() }}</p>
+</section>
