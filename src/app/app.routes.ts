@@ -108,6 +108,11 @@ export const routes: Routes = [
       import('./playground/form/input/input-demo.component').then((m) => m.InputDemoComponent),
   },
   {
+    path: 'datepicker',
+    loadComponent: () =>
+      import('./playground/form/datepicker/datepicker.component').then((m) => m.DatepickerComponent),
+  },
+  {
     path: 'label',
     loadComponent: () =>
       import('./playground/form/label/label.component').then((m) => m.LabelComponent),
